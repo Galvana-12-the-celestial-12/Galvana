@@ -1,10 +1,9 @@
 import telebot
 import os
 from bot_logic import gen_pass
-TOKEN = SECRETTOKEN
 # Замени 'TOKEN' на токен твоего бота
 # Этот токен ты получаешь от BotFather, чтобы бот мог работать
-bot = telebot.TeleBot(TOKEN)
+bot = telebot.TeleBot("7895600822:AAHZKwcg2xD_cHSwgpIRBv1RwAjuOsEf-oY")
     
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
@@ -40,4 +39,4 @@ def send_error(message):
 def echo_all(message):
     bot.reply_to(message, message.text)
 bot.polling()
-SECRETTOKEN = "7895600822:AAHZKwcg2xD_cHSwgpIRBv1RwAjuOsEf-oY"
+
