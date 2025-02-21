@@ -27,11 +27,4 @@ def send_heh(message):
     count_heh = int(message.text.split()[1]) if len(message.text.split()) > 1 else 5
     bot.reply_to(message, "he" * count_heh)
 
-def button():
-    def button_message(message):
-        markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
-        item1=types.KeyboardButton("Кнопка")
-        markup.add(item1)
-button()
-
 bot.polling()
