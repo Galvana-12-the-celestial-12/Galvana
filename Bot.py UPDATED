@@ -27,4 +27,20 @@ def send_heh(message):
     count_heh = int(message.text.split()[1]) if len(message.text.split()) > 1 else 5
     bot.reply_to(message, "he" * count_heh)
 
+@bot.message_handler(commands=['error', 'err'])
+def send_error(message):
+    bot.reply_to(message, 'ERROR')
+
+@bot.message_handler(commands=['lobotomy', 'fireinthehole'])
+def send_lobotomy(message):
+    bot.reply_to(message, 'FIRE IN THE HOLE!')
+
+@bot.message_handler(commands=['lock'])
+def send_lock(message):
+    bot.reply_to(message, 'locked')
+
+@bot.message_handler(commands=['open'])
+def send_lock(message):
+    bot.reply_to(message, 'opened')
+    
 bot.polling()
