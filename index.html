@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+  >
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <title>Генератор мемов</title>
+</head>
+<body>
+  <header class="header">
+    <img src="../static/img/logo.svg" alt="logo" width="50" height="50">
+    <ul class="main-list">
+        <li class="list__item">
+          <a href="">Главная</a>
+        </li>
+        <li class="list__item">
+          <a href="">Коллекция</a>
+        </li>
+        <li class="list__item">
+          <a href="">Связь</a>
+        </li>
+    </ul>
+  </header>
+  <main>
+    {% block content %}
+    <div class="form-block">
+      <h1>Сгенерируй свой мем!</h1>
+      <form method="POST" action="{{ url_for('index') }}">
+        <ul class="form-list">
+          <li class="form-list_item">
+            <label for="image-selector">Выбери мем</label>
+            <select name="image-selector" id="image-selector">
+              <option value="logo.svg" {% if selected_image == 'logo.svg' %}selected{% endif %}>Выбери мем</option>
+              <option value="meme_1.jpg" {% if selected_image == 'meme_1.jpg' %}selected{% endif %}>Девочка и пожар</option>
+              <option value="meme_2.jpg" {% if selected_image == 'meme_2.jpg' %}selected{% endif %}>Две кнопки</option>
+              <!--Задание №1. Добавь сюда новые мемы -->
+              <option value="meme_3.jpg" {% if selected_image == 'meme_3.jpg' %}selected{% endif %}>Ох зря я туда полез</option>
+              <option value="meme_from_2030.jpg" {% if selected_image == 'meme_from_2030.jpg' %}selected{% endif %}>Мем из 2030 года</option>
+              <option value="meme_4.jpg" {% if selected_image == 'meme_4.jpg' %}selected{% endif %}>Лампочка</option>
+              <option value="meme_5.jpg" {% if selected_image == 'meme_5.jpg' %}selected{% endif %}>Кит в космосе</option>
+              <option value="image_to_text.jpg" {% if selected_image == 'image_to_text.jpg' %}selected{% endif %}>Image to text</option>
+              <option value="Geometry_Dash_2.3_is_here.jpg" {% if selected_image == 'Geometry_Dash_2.3_is_here.jpg' %}selected{% endif %}>Geometry Dash 2.3 is here</option>
+            </select>
+          </li>
+          <li class="form-list_item">
+            <label for="textTop">Введите текст сверху</label>
+            <input class="input_text" type="text" placeholder="Введите текст" name="textTop">
+          </li>
+          <li class="form-list_item">
+            <label for="textBottom">Введите текст снизу</label>
+            <input class="input_text" type="text" placeholder="Введите текст" name="textBottom">
+          </li>
+          <li class="form-list_item">
+            <label for="color-selector">Цвет текста</label>
+            <select name="color-selector" id="color-selector">
+              <option value="white" {% if selected_color == 'white' %}selected{% endif %}>Белый</option>
+              <option value="black" {% if selected_color == 'black' %}selected{% endif %}>Черный</option>
+              <!--Доп.Задание №1. Добавь сюда новые цвета -->
+              <option value="red" {% if selected_color == 'red' %}selected{% endif %}>Красный</option>
+              <option value="green" {% if selected_color == 'green' %}selected{% endif %}>Зеленый</option>
+              <option value="blue" {% if selected_color == 'blue' %}selected{% endif %}>Синий</option>
+              <option value="yellow" {% if selected_color == 'yellow' %}selected{% endif %}>Желтый</option>
+              <option value="orange" {% if selected_color == 'orange' %}selected{% endif %}>Оранжевый</option>
+              <option value="purple" {% if selected_color == 'purple' %}selected{% endif %}>Фиолетовый</option>
+              <option value="pink" {% if selected_color == 'pink' %}selected{% endif %}>Розовый</option>
+              <option value="brown" {% if selected_color == 'brown' %}selected{% endif %}>Коричневый</option>
+              <option value="gray" {% if selected_color == 'gray' %}selected{% endif %}>Серый</option>
+              <option value="gold" {% if selected_color == 'gold' %}selected{% endif %}>Золотой</option>
+              <option value="silver" {% if selected_color == 'silver' %}selected{% endif %}>Серебряный</option>
+              <option value="cyan" {% if selected_color == 'cyan' %}selected{% endif %}>Бирюзовый</option>
+              <option value="magenta" {% if selected_color == 'magenta' %}selected{% endif %}>Розовый</option>
+              <option value="lime" {% if selected_color == 'lime' %}selected{% endif %}>Лаймовый</option>
+              <option value="teal" {% if selected_color == 'teal' %}selected{% endif %}>Бирюзовый</option>
+              <option value="maroon" {% if selected_color == 'maroon' %}selected{% endif %}>Темно-красный</option>
+              <option value="navy" {% if selected_color == 'navy' %}selected{% endif %}>Темно-синий</option>
+              <option value="olive" {% if selected_color == 'olive' %}selected{% endif %}>Оливковый</option>
+            </select>
+          </li>
+          <li class="form-list_item">
+            <label for="textTop_y">Введите расположение вверхнего текста по Y</label>
+            <input class="input_text" id="textTop_y" type="text" placeholder="Введите текст" name="textTop_y">
+          </li>
+          <li class="form-list_item">
+            <label for="textBottom_y">Введите расположение нижнего текста по Y</label>
+            <input class="input_text" id="textBottom_y" type="text" placeholder="Введите текст" name="textBottom_y">
+          </li>
+          <button type="submit">Выбрать</button>
+        </ul>
+      </form>
+    </div>
+    <div class="meme-block" id="memeBlock">
+      
+      <p class="text_top" style="color: {{selected_color}}; top: {{text_top_y}}%">
+        <!-- Задание №2. Помещаем переменную с текстом -->
+        <texttop>
+          {{ textTop }}
+        </texttop>
+        
+      </p>
+
+      <img class="meme" src="{{ url_for('serve_images', path=selected_image) }}" alt="{{ selected_image }}">
+
+      <p class="text_bottom" style="color: {{selected_color}}; bottom: {{text_bottom_y}}%">
+        <!-- Задание №2. Помещаем переменную с текстом -->
+        <text_bottom>
+          {{ textBottom }}
+        </text_bottom>
+         <texttop>
+          {{ textTop }}
+         </texttop>
+        <text_bottom>
+          {{ textBottom }}
+        </text_bottom>
+      </p>
+    </div>
+    {% endblock %}
+  </main>
+  <footer>
+
+  </footer>
+</body>
+</html>
