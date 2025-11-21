@@ -3,6 +3,9 @@ import numpy as np
 import speech_recognition as sr
 import random
 from googletrans import Translator
+import tensorflow
+import uvicorn
+import fastapi
 words_by_level = {
     "easy": ["кот", "собака", "яблоко", "молоко", "солнце"],
     "medium": ["банан", "школа", "друг", "окно", "жёлтый"],
