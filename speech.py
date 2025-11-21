@@ -3,9 +3,9 @@ import numpy as np
 import speech_recognition as sr
 import random
 from googletrans import Translator
-import tensorflow
-import uvicorn
-import fastapi
+from requirements.txt import tensorflow
+from requirements.txt import uvicorn
+from requirements.txt import fastapi
 words_by_level = {
     "easy": ["кот", "собака", "яблоко", "молоко", "солнце"],
     "medium": ["банан", "школа", "друг", "окно", "жёлтый"],
@@ -53,6 +53,7 @@ while True:
             print("Не удалось распознать речь")
         except sr.RequestError as e:
             print(f'Ошибка сервиса: {e}')
+
 
 
 
